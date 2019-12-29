@@ -8,9 +8,9 @@ function RoutesTable({routes}) {
       {
         routes.map((route) => (
           <tr>
-            <td>{route.airline}</td>
-            <td>{route.src}</td>
-            <td>{route.dest}</td>
+            <td>{DATA.getAirlineById(route.airline).name}</td>
+            <td>{DATA.getAirportByCode(route.src).name}</td>
+            <td>{DATA.getAirportByCode(route.dest).name}</td>
           </tr>
         ))
       }
