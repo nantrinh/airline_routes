@@ -3,29 +3,11 @@ import './App.css';
 import DATA from './data';
 import Table from './components/Table';
 
-function RoutesTable({routes}) {
-  return(
-    <table>
-      {
-        routes.map((route) => (
-          <tr>
-            <td>{DATA.getAirlineById(route.airline).name}</td>
-            <td>{DATA.getAirportByCode(route.src).name}</td>
-            <td>{DATA.getAirportByCode(route.dest).name}</td>
-          </tr>
-        ))
-      }
-    </table>
-  );
-} 
-
-
 class App extends Component {
-
   formatValue(property, value) {
     if (property === 'airline') {
       return DATA.getAirlineById(value).name;
-    } else if (property === 'src' || property == 'dest') {
+    } else if (property === 'src' || property === 'dest') {
       return DATA.getAirportByCode(value).name;
     }
   }
