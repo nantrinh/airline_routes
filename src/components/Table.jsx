@@ -40,6 +40,8 @@ class Table extends Component {
         </table>
         <div>
           <p>Showing {start} - {start + this.props.perPage} of {this.props.rows.length} total routes.</p>
+          <button>Previous Page</button>
+          <button>Next Page</button>
         </div>
       </div>
     );
