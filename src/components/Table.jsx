@@ -19,7 +19,7 @@ class Table extends Component {
 
   nextPage = (event) => {
     event.preventDefault(); 
-    this.setState({page: this.state.page - 1});
+    this.setState({page: this.state.page + 1});
   }
 
   render() {
