@@ -5,6 +5,17 @@ import Table from './components/Table';
 import Select from './components/Select';
 
 class App extends Component {
+  defaultState = {
+    airline: 'all',
+    airport: 'all',
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = this.defaultState;
+  }
+
   formatValue(property, value) {
     if (property === 'airline') {
       return DATA.getAirlineById(value).name;
@@ -12,6 +23,10 @@ class App extends Component {
       return DATA.getAirportByCode(value).name;
     }
   }
+
+  airlineSelected = (name) => {
+    this.setState({airline: name}); 
+  };
 
   render() {
     const columns = [
@@ -29,8 +44,7 @@ class App extends Component {
           <h1 className="title">Airline Routes</h1>
         </header>
         <section>
-        Show routes on <Select options={filteredAirlines} valueKey="id" titleKey="name"
-  allTitle="All Airlines" value="" onSelect="" />
+        Show routes on <Select options={filteredAirlines} titleKey="name" allTitle="All Airlines" onSelect={this.airlineSelected} selected={this.state.airline}/>
         </section>
         <section>
           <Table className="routes-table" columns={columns} rows={routes} format={this.formatValue} />
