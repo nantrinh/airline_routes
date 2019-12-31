@@ -15,9 +15,9 @@ class Select extends Component {
   }
 
   render() {
-    const options = Object.values(this.props.options).map((o) => {
-      const value = o[this.props.titleKey];
-      return <option key={value} value={value}>{value}</option>;
+    const options = Object.keys(this.props.options).map((key) => {
+      const displayValue = this.props.options[key][this.props.titleKey];
+      return <option key={key} value={key}>{displayValue}</option>;
     }); 
 
     return (
