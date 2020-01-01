@@ -18,11 +18,24 @@ class Select extends Component {
   }
 
   render() {
-    let options = this.props.options.map( (option) => {
+    let optionNames = new Set();
+    this.props.options.forEach((o) => optionNames.add(o[this.props.valueKey]));
+
+    let options = this.props.all.map((option) => {
       const value = option[this.props.valueKey];
-      return <option key={value} value={value}>
-          { option[this.props.titleKey] }
-        </option>;
+      if (optionNames.has(value)) { 
+        return (
+          <option key={value} value={value}>
+            { option[this.props.titleKey] }
+          </option>
+        );
+      } else {
+        return (
+          <option key={value} value={value} disabled>
+            { option[this.props.titleKey] }
+          </option>
+        );
+      }
     });
     options.unshift(<option key="all" value="all">{this.props.allTitle}</option>);
 

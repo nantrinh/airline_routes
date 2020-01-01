@@ -80,13 +80,13 @@ class App extends Component {
         <section>
           <p>
             Show routes on
-            <Select options={filteredAirlines} valueKey="id" titleKey="name" enabledKey="active"
+            <Select options={filteredAirlines} all={DATA.airlines} valueKey="id" titleKey="name" enabledKey="active"
                 allTitle="All Airlines"
                 value={this.state.airline}
                 onSelect={this.airlineSelected}
             />
             flying in or out of
-            <Select options={filteredAirports} valueKey="code" titleKey="name" enabledKey="active"
+            <Select options={filteredAirports} all={DATA.airports} valueKey="code" titleKey="name" enabledKey="active"
                 allTitle="All Airports"
                 value={this.state.airport}
                 onSelect={this.airportSelected}
