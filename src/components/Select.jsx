@@ -2,31 +2,36 @@ import React, { Component } from 'react';
 
 class Select extends Component {
   static defaultProps = {
-    options: {},
+    options: [],
+    title: 'Please select',
+    valueKey: '',
     titleKey: '',
-    selected: 'all',
+    value: 'all',
     allTitle: 'All',
     onSelect: (value) => null,
+    enabledKey: undefined,
   }
 
   handleChange = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     this.props.onSelect(event.target.value);
   }
 
   render() {
-    const options = Object.keys(this.props.options).map((key) => {
-      const displayValue = this.props.options[key][this.props.titleKey];
-      return <option key={key} value={key}>{displayValue}</option>;
-    }); 
+    let options = this.props.options.map( (option) => {
+      const value = option[this.props.valueKey];
+      return <option key={value} value={value}>
+          { option[this.props.titleKey] }
+        </option>;
+    });
+    options.unshift(<option key="all" value="all">{this.props.allTitle}</option>);
 
     return (
-      <select value={this.props.selected} onChange={this.handleChange}>
-        <option key="all" value="all">{this.props.allTitle}</option>
-        {options}
+      <select value={this.props.value} onChange={this.handleChange}>
+        { options }
       </select>
-    ); 
-  };
+    );
+  }
 }
 
 export default Select;
